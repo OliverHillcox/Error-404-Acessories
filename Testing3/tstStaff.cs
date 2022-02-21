@@ -17,16 +17,16 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void InterenPropertyOK()
+        public void InternPropertyOK()
         {
             //create an instance of the class we want to create
             clsStaff anStaff = new clsStaff();
             //create some test data
             Boolean TestData = true;
             //assign the data to the property
-            anStaff.Interen = TestData;
+            anStaff.Intern = TestData;
             //test to see if the two values are the same
-            Assert.AreEqual(anStaff.Interen, TestData);
+            Assert.AreEqual(anStaff.Intern, TestData);
         }
 
         [TestMethod]
@@ -92,6 +92,19 @@ namespace Testing3
             anStaff.Salary = TestData;
             //test to see that two values are the same
             Assert.AreEqual(anStaff.Salary, TestData);
+        }
+
+        [TestMethod]
+        public void PhonePropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff anStaff = new clsStaff();
+            //create some testdata to assign to the property
+            String TestData = "078 3965 3462";
+            //assign the data to the property
+            anStaff.Phone = TestData;
+            //test to see that two values are the same
+            Assert.AreEqual(anStaff.Phone, TestData);
         }
 
 
