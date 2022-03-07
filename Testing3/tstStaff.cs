@@ -107,6 +107,174 @@ namespace Testing3
             Assert.AreEqual(anStaff.Phone, TestData);
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //creating an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 StaffId = 2;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //test to see if the rsult is true
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to store the rsult of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.StaffId != 3)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStartedDateFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to sore the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.StartedDate != Convert.ToDateTime("13/04/2020"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestInternFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to sore the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.Intern != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestNameFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to sore the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.Name != "john")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAddressFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to sore the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.Address != "XX XXX XXXX")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSalaryFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to sore the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.Salary != 20000.00)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPhoneFound()
+        {
+            //create an instance of class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to sore the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 3;
+            //invoke the method
+            Found = AnStaff.Find(StaffId);
+            //check the staff id
+            if (AnStaff.Phone != "123 456 7890")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
 
     }
 }
