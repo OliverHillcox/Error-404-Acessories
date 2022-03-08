@@ -37,4 +37,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         Response.Redirect("CustomerDataEntry.aspx");
     }
+
+    protected void Find_Click(object sender, EventArgs e)
+    {
+         clsCustomer ACustomer = new clsCustomer();
+
+        Int32 CustomerID;
+
+        Boolean Found = false;
+
+        CustomerID = Convert.ToInt32(txtCustomerID.Text);
+
+        Found = ACustomer.Find(CustomerID);
+
+        if(Found)
+        {
+            txtAddress.Text = ACustomer.Address;
+            txtBirthday.Text = ACustomer.Birthday.ToString();
+            txtCustomerName.Text = ACustomer.Name;
+            txtEmailAddress.Text = ACustomer.EmailAddress;
+            txtPhoneNumber.Text = ACustomer.PhoneNumber;
+            txtPostCode.Text = ACustomer.PostCode;
+
+        }
+
+
+
+    }
 }
