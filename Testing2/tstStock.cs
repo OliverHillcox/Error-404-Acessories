@@ -92,5 +92,105 @@ namespace Testing2
             //test to see if the two values are the same
             Assert.AreEqual(SomeStock.ItemDateAdded, TestData);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestItemIDFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            if (someStock.ItemID != 1)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemNameFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            if (someStock.ItemName != "CorsairK55")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemPriceFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            if (someStock.ItemPrice != Convert.ToDouble("64.99"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemQuantityFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            if (someStock.ItemQuantity != 34)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemOver18Found()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            if (someStock.ItemOver18 != false)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemDateAddedFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemid = 1;
+            Found = someStock.Find(itemid);
+            if (someStock.ItemDateAdded != Convert.ToDateTime("22/02/2022"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
