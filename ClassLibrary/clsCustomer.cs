@@ -60,7 +60,7 @@ namespace ClassLibrary
 
         public bool Find(int customerID)
         {
-            clsDataConnection DB = new clsDataConnection("");
+            clsDataConnection DB = new clsDataConnection();
 
             DB.AddParameter("@CustomerID", customerID);
 

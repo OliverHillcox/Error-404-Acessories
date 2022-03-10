@@ -115,7 +115,7 @@ namespace Testing1
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             //invoke the method
             Found = ACustomer.Find(CustomerID);
@@ -130,11 +130,11 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
-            if (ACustomer.CustomerID != 3)
+            if (ACustomer.CustomerID != 5)
             {
                 OK = false;
             }
@@ -148,7 +148,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
@@ -166,7 +166,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
@@ -184,7 +184,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
@@ -202,7 +202,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
@@ -221,7 +221,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
@@ -240,7 +240,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
@@ -258,7 +258,7 @@ namespace Testing1
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 3;
+            Int32 CustomerID = 5;
 
             Found = ACustomer.Find(CustomerID);
 
