@@ -7,17 +7,20 @@
     <title></title>
 </head>
 <body style="height: 406px">
-    <p>This is the order entry page</p>
     <form id="form1" runat="server">
+    <p>This is the order entry page</p>
         <div style="height: 24px">
             <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
             <asp:TextBox ID="txtAddress" runat="server" OnTextChanged="TextBox1_TextChanged" style="margin-left: 11px" width="128px"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
         </div>
         <br />
         <asp:Label ID="lblOrderNo" runat="server" Text="Order Number"></asp:Label>
         <asp:TextBox ID="txtOrderNo" runat="server" Height="16px" style="margin-left: 12px" width="128px"></asp:TextBox>
-        <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click1" Text="Find" />
+&nbsp;<p>
             <asp:Label ID="lblOrderQnty" runat="server" Text="Order Quantity"></asp:Label>
 &nbsp;<asp:TextBox ID="txtOrderQnty" runat="server" width="128px"></asp:TextBox>
         </p>
