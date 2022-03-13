@@ -115,7 +115,7 @@ namespace Testing3
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StaffId = 2;
+            Int32 StaffId = 3;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //test to see if the rsult is true
@@ -158,7 +158,7 @@ namespace Testing3
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the staff id
-            if (AnStaff.StartedDate != Convert.ToDateTime("13/04/2020"))
+            if (AnStaff.StartedDate != Convert.ToDateTime("2019/12/08"))
             {
                 OK = false;
             }
@@ -180,7 +180,7 @@ namespace Testing3
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the staff id
-            if (AnStaff.Intern != true)
+            if (AnStaff.Intern != false)
             {
                 OK = false;
             }
@@ -202,7 +202,7 @@ namespace Testing3
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the staff id
-            if (AnStaff.Name != "john")
+            if (AnStaff.Name != "Matthew")
             {
                 OK = false;
             }
@@ -224,7 +224,7 @@ namespace Testing3
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the staff id
-            if (AnStaff.Address != "XX XXX XXXX")
+            if (AnStaff.Address != "3  Abington Park,Leicester,United Kingdom")
             {
                 OK = false;
             }
@@ -246,7 +246,7 @@ namespace Testing3
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the staff id
-            if (AnStaff.Salary != 20000.00)
+            if (AnStaff.Salary != 23000)
             {
                 OK = false;
             }
@@ -268,13 +268,15 @@ namespace Testing3
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the staff id
-            if (AnStaff.Phone != "123 456 7890")
+            if (AnStaff.Phone != "079 4975 1422 ")
             {
                 OK = false;
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+
+
 
     }
 }
