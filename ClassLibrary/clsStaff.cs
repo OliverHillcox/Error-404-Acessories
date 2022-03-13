@@ -6,7 +6,7 @@ namespace ClassLibrary
     {
 
         //intern private member variable
-        private Boolean mIntern;
+        private bool mIntern;
         //intern public property
         public bool Intern {
             get 
@@ -117,19 +117,36 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
-            //set the private data member to the test data value
-            mStaffId = 3;
-            mStartedDate = Convert.ToDateTime("13/04/2020");
-            mIntern = true;
-            mName = "john";
-            mAddress = "XX XXX XXXX";
-            mSalary = 20000.00;
-            mPhone = "123 456 7890";
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the staffId to search for
+            DB.AddParameter("@StaffId", StaffId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
+            //if one is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data member
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mStartedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StartedDate"]);
+                mIntern = Convert.ToBoolean(DB.DataTable.Rows[0]["Intern"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]); ;
+                mSalary = Convert.ToDouble(DB.DataTable.Rows[0]["Salary"]); ;
+                mPhone = Convert.ToString(DB.DataTable.Rows[0]["Phone"]); ;
 
-            //always return true
-            return true;
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating a problem
+                return false;
+            }
+
         }
     }
 }
