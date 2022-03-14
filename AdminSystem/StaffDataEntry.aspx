@@ -12,6 +12,8 @@
             <br />
             <asp:Label ID="lblStaffId" runat="server" Text="StaffId : " width="193px"></asp:Label>
             <asp:TextBox ID="txtStaffId" runat="server" OnTextChanged="TextBox8_TextChanged"></asp:TextBox>
+            &nbsp;
+            <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click" Text="Find" />
             <br />
             <br />
             <br />
