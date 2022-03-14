@@ -148,5 +148,14 @@ namespace ClassLibrary
             }
 
         }
+        
+        //function for the public validation method
+        public string Valid(string name, string startedDate, string address, string phone)
+        {
+            ////this function accepts accepts 5 parameters for validation
+            ///the function returns a string containing any error message
+            ///if no errors found then a blank string is returned
+            return "";
+        }
     }
 }
