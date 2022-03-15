@@ -28,4 +28,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         Response.Redirect("StockDataEntry.aspx");
     }
+
+    protected void Find_Click(object sender, EventArgs e)
+    {
+        clsStock someStock = new clsStock();
+        Int32 Itemid;
+        Boolean Found = false;
+        Itemid = Convert.ToInt32(txtItemID.Text);
+        Found = someStock.Find(Itemid);
+        if (Found == true)
+        {
+            txtItemName.Text = someStock.ItemName;
+            txtItemDateAdded.Text = someStock.ItemDateAdded.ToString();
+            txtItemOver18.Text = someStock.ItemOver18.ToString();
+            txtItemPrice.Text = someStock.ItemPrice.ToString();
+            txtItemQuantity.Text = someStock.ItemQuantity.ToString();
+
+        }
+    }
 }
