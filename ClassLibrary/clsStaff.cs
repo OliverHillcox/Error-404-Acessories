@@ -206,7 +206,7 @@ namespace ClassLibrary
             }
             if (phone.Length > 50)
             {
-                Error = Error + "The phone must be less than 50 characters";
+                Error = Error + "The phone must be less than 50 characters : ";
             }
 
             //return any error message
