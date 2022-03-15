@@ -11,10 +11,10 @@ namespace Testing2
 
         //good test data
         string itemname = "LogitechM535";
-        Double itemprice = 35.99;
-        Int32 itemquantity = 4;
-        Boolean itemover18 = false;
-        DateTime itemdateadded = DateTime.Now.Date;
+        string itemprice = "35.99";
+        string itemquantity = "4";
+        string itemover18 = "false";
+        string itemdateadded = DateTime.Now.Date.ToString();
 
         [TestMethod]
         public void ValidMethodOK()
@@ -23,6 +23,270 @@ namespace Testing2
             String Error = "";
             Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "a";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "ab";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxMinusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "xybmednzkfmbwlefltbjwhtodhieoqefhttnjqaekoaxzfdtl";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "xybmednzkfmbwlefltbjwhtodhieoqefhttnjqaekoaxzfdtla";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "xybmednzkfmbwlefltbjwhtodhieoqefhttnjqaekoaxzfdtlab";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMid()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "xybmednzkfmbwlefltbjwhtod";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "mafqupcccjzlavqqendztsobhzojftssfnetkduveeykulqlyigvojzbirtaqvbvhbmncwpgfmqrpfegdnuqnzetmtbhwibjwzkrsvjcavjvgqatqzpbkwzjvrwuubiihxeotwxhvambhtmnmijhesaptplerwyiqyyrtekwgnapnpohppaybjretciykfacobivfujofujqaqqdjtwetawjjuxpqzmgiqediulyltrrcttizbkrbxctfmaxbydmydjjwcsubwklxkrgodivzyajbfaxfhgsyxdybabxroqo";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "0.01";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "1.01";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMaxMinusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "99998.99";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMaxBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "99999.99";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMaxPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "100000.99";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceMid()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "499.99";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "999999999999.99";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceValidCheck()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "abcdefg";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantityValidCheck()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "abcdefg";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemOver18ValidCheck()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemover18 = "abcdefg";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDateAddedValidCheck()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemdateadded = "abcdefg";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDateAddedExtremeMin()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string itemdateadded = TestDate.ToString();
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDateAddedMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string itemdateadded = TestDate.ToString();
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDateAddedMin()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string itemdateadded = TestDate.ToString();
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDateAddedMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string itemdateadded = TestDate.ToString();
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDateAddedExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string itemdateadded = TestDate.ToString();
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
