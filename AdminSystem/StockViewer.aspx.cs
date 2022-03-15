@@ -13,6 +13,8 @@ public partial class _1Viewer : System.Web.UI.Page
         clsStock someStock = new clsStock();
         someStock = (clsStock)Session["someStock"];
 
+        Response.Write(someStock.ItemID);
+        Response.Write("<br/>");
         Response.Write(someStock.ItemName);
         Response.Write("<br/>");
         Response.Write(someStock.ItemPrice);

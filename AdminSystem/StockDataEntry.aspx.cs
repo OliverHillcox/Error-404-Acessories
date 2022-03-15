@@ -15,6 +15,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStock someStock = new clsStock();
+        someStock.ItemID = Int32.Parse(txtItemID.Text);
         someStock.ItemName = txtItemName.Text;
         someStock.ItemOver18 = txtItemOver18.Checked;
         someStock.ItemQuantity = Int32.Parse(txtItemQuantity.Text);

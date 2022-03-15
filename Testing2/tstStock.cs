@@ -8,6 +8,23 @@ namespace Testing2
     [TestClass]
     public class tstStock
     {
+
+        //good test data
+        string itemname = "LogitechM535";
+        Double itemprice = 35.99;
+        Int32 itemquantity = 4;
+        Boolean itemover18 = false;
+        DateTime itemdateadded = DateTime.Now.Date;
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
         [TestMethod]
         public void InstanceOK()
         {
