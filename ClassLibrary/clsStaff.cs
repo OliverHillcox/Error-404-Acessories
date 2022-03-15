@@ -117,7 +117,7 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
@@ -152,10 +152,65 @@ namespace ClassLibrary
         //function for the public validation method
         public string Valid(string name, string startedDate, string address, string phone)
         {
-            ////this function accepts accepts 5 parameters for validation
-            ///the function returns a string containing any error message
-            ///if no errors found then a blank string is returned
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            //if the Name is blank
+            if (name.Length == 0)
+            {
+                //record the error
+                Error = Error + "The name may not be blank : ";
+            }
+            //if the name is grater than 50 characters
+            if (name.Length > 50)
+            {
+                //record the error
+                Error = Error + "The name must be less than 50 characters : ";
+            }
+
+            try
+            {
+                //copy the StartedDate value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(startedDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past";
+                }
+
+                //check to see if the date is grater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (address.Length == 0)
+            {
+                Error = Error + "The address may not be blank : ";
+            }
+            if (address.Length > 50)
+            {
+                Error = Error + "The address must be less than 50 characters : ";
+            }
+
+            if (phone.Length == 0)
+            {
+                Error = Error + "The phone may not be blank";
+            }
+            if (phone.Length > 50)
+            {
+                Error = Error + "The phone must be less than 50 characters : ";
+            }
+
+            //return any error message
+            return Error;
         }
     }
 }
