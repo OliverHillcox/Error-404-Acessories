@@ -33,6 +33,12 @@ namespace ClassLibrary
                 mItemDateAdded = value;
             }
         }
+
+        public string Valid(string itemname, double itemprice, int itemquantity, bool itemover18, DateTime itemdateadded)
+        {
+            return "";
+        }
+
         public int ItemID
         {
             get
