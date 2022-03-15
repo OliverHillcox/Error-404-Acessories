@@ -34,9 +34,72 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string itemname, double itemprice, int itemquantity, bool itemover18, DateTime itemdateadded)
+        public string Valid(string itemname, string itemprice, string itemquantity, string itemover18, string itemdateadded)
         {
-            return "";
+            String Error = "";
+            DateTime Datetemp;
+            Double Pricetemp;
+            Int32 Quanttemp;
+            Boolean Over18temp;
+
+            if (itemname.Length == 0)
+            {
+                Error = Error + "Itemname cannot be blank. ";
+            }
+            if (itemname.Length > 50)
+            {
+                Error = Error + "Itemname cannot exceed 50 characters. ";
+            }
+
+            try
+            {
+                Pricetemp = Convert.ToDouble(itemprice);
+                if (itemprice.Length >= 9)
+                {
+                    Error = Error + "ItemPrice cannot exceed £100000. ";
+                }
+            }
+            catch
+            {
+                Error = Error + "ItemPrice must be a valid Double. ";
+            }
+
+            try
+            {
+                Datetemp = Convert.ToDateTime(itemdateadded);
+                if (Datetemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past. ";
+                }
+                if (Datetemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The data cannot be in the future. ";
+                }
+            }
+            catch
+            {
+                Error = Error + "DateAdded must be valid. ";
+            }
+
+            try
+            {
+                Quanttemp = Convert.ToInt32(itemquantity);
+            }
+            catch
+            {
+                Error = Error + "ItemQuantity must be valid. ";
+            }
+
+            try
+            {
+                Over18temp = Convert.ToBoolean(itemover18);
+            }
+            catch
+            {
+                Error = Error + "Over18 variable must be valid. ";
+            }
+
+            return Error;
         }
 
         public int ItemID
