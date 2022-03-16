@@ -84,5 +84,82 @@ namespace ClassLibrary
             else { return false; }
 
         }
+
+        public string Valid(string name, string birthday, string emailAddress, string address, string postcode, string phoneNumber, string over18)
+        {
+            String Error = "";
+            DateTime DateTemp;
+
+            if (name.Length == 0)
+            {
+                Error = Error + "The name may not be blank : ";
+            }
+            //grater than 50 chars
+            if (name.Length > 50)
+            {
+                //record the error
+                Error = Error + "The name must be less than 50 characters : ";
+            }
+
+            try
+            {
+                //check to see if the date is grater than today's date
+                DateTemp = Convert.ToDateTime(birthday);
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future";
+                }
+
+                if (DateTemp < DateTime.Now.Date.AddYears(-100))
+                {
+                    Error = Error + "The date cannot be that far in the past";
+                }
+
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (emailAddress.Length == 0)
+            {
+                Error = Error + "The emailAddress cannot not be empty: ";
+            }
+            if (emailAddress.Length > 50)
+            {
+                Error = Error + "The emailAddress must be less than 50 chars: ";
+            }
+
+            if (address.Length == 0)
+            {
+                Error = Error + "The address cannot not be empty: ";
+            }
+            if (address.Length > 50)
+            {
+                Error = Error + "The address must be less than 50 chars: ";
+            }
+
+            if (phoneNumber.Length == 0)
+            {
+                Error = Error + "The phoneNumber may not be blank";
+            }
+            if (phoneNumber.Length > 50)
+            {
+                Error = Error + "The phoneNumber must be less than 50 characters : ";
+            }
+
+            if (postcode.Length == 0)
+            {
+                Error = Error + "The postcode may not be blank";
+            }
+            if (postcode.Length > 9)
+            {
+                Error = Error + "The postcode must be less than 9 characters : ";
+            }
+
+            //return any error message
+            return Error;
+        }
     }
 }
