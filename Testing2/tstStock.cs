@@ -10,6 +10,7 @@ namespace Testing2
     {
 
         //good test data
+        string itemid = "4";
         string itemname = "LogitechM535";
         string itemprice = "35.99";
         string itemquantity = "4";
@@ -31,7 +32,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -41,7 +42,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "a";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -51,7 +52,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "ab";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -61,7 +62,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "xybmednzkfmbwlefltbjwhtodhieoqefhttnjqaekoaxzfdtl";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -71,7 +72,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "xybmednzkfmbwlefltbjwhtodhieoqefhttnjqaekoaxzfdtla";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -81,7 +82,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "xybmednzkfmbwlefltbjwhtodhieoqefhttnjqaekoaxzfdtlab";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -91,7 +92,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "xybmednzkfmbwlefltbjwhtod";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -101,7 +102,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemname = "mafqupcccjzlavqqendztsobhzojftssfnetkduveeykulqlyigvojzbirtaqvbvhbmncwpgfmqrpfegdnuqnzetmtbhwibjwzkrsvjcavjvgqatqzpbkwzjvrwuubiihxeotwxhvambhtmnmijhesaptplerwyiqyyrtekwgnapnpohppaybjretciykfacobivfujofujqaqqdjtwetawjjuxpqzmgiqediulyltrrcttizbkrbxctfmaxbydmydjjwcsubwklxkrgodivzyajbfaxfhgsyxdybabxroqo";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -111,7 +112,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -121,7 +122,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "0.01";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -131,7 +132,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "1.01";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -141,7 +142,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "99998.99";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -151,7 +152,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "99999.99";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -161,7 +162,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "100000.99";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -171,7 +172,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "499.99";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -181,7 +182,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "999999999999.99";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -191,7 +192,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "abcdefg";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -201,7 +202,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemquantity = "abcdefg";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -211,7 +212,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemover18 = "abcdefg";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -221,7 +222,7 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemdateadded = "abcdefg";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -234,7 +235,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string itemdateadded = TestDate.ToString();
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -247,7 +248,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string itemdateadded = TestDate.ToString();
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -259,7 +260,7 @@ namespace Testing2
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string itemdateadded = TestDate.ToString();
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
@@ -272,7 +273,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string itemdateadded = TestDate.ToString();
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -285,7 +286,7 @@ namespace Testing2
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string itemdateadded = TestDate.ToString();
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
 

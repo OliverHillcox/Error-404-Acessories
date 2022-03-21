@@ -15,14 +15,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStock someStock = new clsStock();
-        someStock.ItemID = Int32.Parse(txtItemID.Text);
-        someStock.ItemName = txtItemName.Text;
-        someStock.ItemOver18 = txtItemOver18.Checked;
-        someStock.ItemQuantity = Int32.Parse(txtItemQuantity.Text);
-        someStock.ItemDateAdded = Convert.ToDateTime(txtItemDateAdded.Text);
-        someStock.ItemPrice = Convert.ToDouble(txtItemPrice.Text);
-        Session["someStock"] = someStock;
-        Response.Redirect("StockViewer.aspx");
+        string itemid = txtItemID.Text;
+        string itemname = txtItemName.Text;
+        string itemover18 = txtItemOver18.Checked.ToString();
+        string itemquantity = txtItemQuantity.Text;
+        string itemdateadded = txtItemDateAdded.Text;
+        string itemprice = txtItemPrice.Text;
+        string Error = "";
+        Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+        if (Error == "")
+        {
+            someStock.ItemID = Int32.Parse(txtItemID.Text);
+            someStock.ItemName = txtItemName.Text;
+            someStock.ItemOver18 = txtItemOver18.Checked;
+            someStock.ItemQuantity = Int32.Parse(txtItemQuantity.Text);
+            someStock.ItemDateAdded = Convert.ToDateTime(txtItemDateAdded.Text);
+            someStock.ItemPrice = Convert.ToDouble(txtItemPrice.Text);
+            Session["someStock"] = someStock;
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
