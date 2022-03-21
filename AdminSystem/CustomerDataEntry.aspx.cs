@@ -17,20 +17,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
         clsCustomer ACustomer = new clsCustomer();
-        ACustomer.Active = chkOver18.Checked;
-        ACustomer.Name = txtCustomerName.Text;
+
+        string Active = chkOver18.Checked.ToString();
+        string Name = txtCustomerName.Text;
 
         string[] birthdayArray = txtBirthday.Text.Split('/');
-        ACustomer.Birthday =  new DateTime(Int32.Parse(birthdayArray[2]), Int32.Parse(birthdayArray[1]), Int32.Parse(birthdayArray[0]));
 
-        ACustomer.Address = txtAddress.Text;
-        ACustomer.PostCode = txtPostCode.Text;
-        ACustomer.PhoneNumber = txtPhoneNumber.Text;
-        ACustomer.EmailAddress = txtEmailAddress.Text;
+        string Birthday = txtBirthday.Text;
+        string Address = txtAddress.Text;
+        string PostCode = txtPostCode.Text;
+        string PhoneNumber = txtPhoneNumber.Text;
+        string EmailAddress = txtEmailAddress.Text;
 
-        Session["ACustomer"] = ACustomer;
+        string Error = "";
+        Error = ACustomer.Valid(Name, Birthday, EmailAddress, Address, PostCode, PhoneNumber, Active);
 
-        Response.Redirect("CustomerViewer.aspx");
+        if(Error == "")
+        {
+            ACustomer.Active = chkOver18.Checked;
+            ACustomer.Name = Name;
+            ACustomer.Birthday = Convert.ToDateTime(Birthday);
+            ACustomer.PostCode = PostCode;
+            ACustomer.PhoneNumber = PhoneNumber;
+            ACustomer.EmailAddress = EmailAddress;
+
+            Session["ACustomer"] = ACustomer;
+            Response.Redirect("CustomerViewer.aspx");
+        }
+
+        else
+        {
+            lblError.Text = Error;
+        }
+
+
+
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
