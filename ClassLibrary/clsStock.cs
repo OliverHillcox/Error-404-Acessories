@@ -34,7 +34,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string itemname, string itemprice, string itemquantity, string itemover18, string itemdateadded)
+        public string Valid(string itemid, string itemname, string itemprice, string itemquantity, string itemover18, string itemdateadded)
         {
             String Error = "";
             DateTime Datetemp;
