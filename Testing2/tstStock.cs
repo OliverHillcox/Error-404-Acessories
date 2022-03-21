@@ -22,7 +22,7 @@ namespace Testing2
         {
             clsStock someStock = new clsStock();
             String Error = "";
-            Error = someStock.Valid(itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreEqual(Error, "");
         }
 
