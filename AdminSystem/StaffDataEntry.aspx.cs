@@ -18,20 +18,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStaff
         clsStaff AnStaff = new clsStaff();
 
-        //capture the Name
-        AnStaff.Name = txtName.Text;
-        AnStaff.Phone = txtPhone.Text;
-        AnStaff.Address = txtAddress.Text;
-        AnStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
-        AnStaff.StartedDate = Convert.ToDateTime(txtStartedDate.Text);
-        AnStaff.Salary = Convert.ToDouble(txtSalary.Text);
-        AnStaff.Intern = chkIntern.Checked;
+        //capture the properties
+        string Name = txtName.Text;
+        string Phone = txtPhone.Text;
+        string Address = txtAddress.Text;
+        string StaffId = txtStaffId.Text;
+        string StartedDate = txtStartedDate.Text;
+        string Salary = txtSalary.Text;
 
-        //store the address in the seesion object
-        Session["AnStaff"] = AnStaff;
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+        //variable to store any error message
+        string Error = "";
+        //validate the data
+        Error = AnStaff.Valid(Name, Phone, Address, StartedDate);
+        if (Error == "")
+        {
+            AnStaff.Name = Name;
+            AnStaff.Phone = Phone;
+            AnStaff.Address = Address;
+            AnStaff.StaffId = Convert.ToInt32(StaffId);
+            AnStaff.Salary = Convert.ToDouble(Salary);
+            AnStaff.StartedDate = Convert.ToDateTime(StartedDate);
+            //store the address in the seesion object
+            Session["AnStaff"] = AnStaff;
+            //navigate to the viewer page
+            Response.Write("StaffViewer.aspx");
 
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
     }
 
