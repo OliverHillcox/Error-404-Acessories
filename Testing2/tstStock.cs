@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ClassLibrary;
+using System.Collections.Generic;
 
 
 namespace Testing2
@@ -16,6 +17,58 @@ namespace Testing2
         string itemquantity = "4";
         string itemover18 = "false";
         string itemdateadded = DateTime.Now.Date.ToString();
+
+        [TestClass]
+        public class tstStockCollection
+        {
+            [TestMethod]
+            public void InstanceOK()
+            {
+                clsStockCollection AllStock = new clsStockCollection();
+                Assert.IsNotNull(AllStock);
+            }
+
+            [TestMethod]
+            public void StockListOK()
+            {
+                clsStockCollection AllStock = new clsStockCollection();
+                List<clsStock> TestList = new List<clsStock>();
+                clsStock TestItem = new clsStock();
+                TestItem.ItemID = 5;
+                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemOver18 = false;
+                TestItem.ItemPrice = 35.00;
+                TestItem.ItemQuantity = 12;
+                TestItem.ItemDateAdded = DateTime.Now.Date;
+                TestList.Add(TestItem);
+                AllStock.StockList = TestList;
+                Assert.AreEqual(AllStock.StockList, TestList);
+            }
+
+            [TestMethod]
+            public void ThisStockPropertyOK()
+            {
+                clsStockCollection AllStock = new clsStockCollection();
+                clsStock TestItem = new clsStock();
+                TestItem.ItemID = 5;
+                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemOver18 = false;
+                TestItem.ItemPrice = 35.00;
+                TestItem.ItemQuantity = 12;
+                TestItem.ItemDateAdded = DateTime.Now.Date;
+                AllStock.ThisStock = TestItem;
+                Assert.AreEqual(AllStock.ThisStock, TestItem);
+            }
+
+            [TestMethod]
+            public void CountPropertyOK()
+            {
+                clsStockCollection AllStock = new clsStockCollection();
+                Int32 StockCount = 0;
+                AllStock.Count = StockCount;
+                Assert.AreEqual(AllStock.Count, StockCount);
+            }
+        }
 
         [TestMethod]
         public void ValidMethodOK()
