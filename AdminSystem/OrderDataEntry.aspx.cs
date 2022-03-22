@@ -23,19 +23,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the address
-        AnOrder.Address = txtAddress.Text;
-        AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
-        AnOrder.OrderQnty = Convert.ToInt32(txtOrderQnty.Text);
-        AnOrder.OrderPrice = Convert.ToDouble(txtOrderPrice.Text);
-        AnOrder.DateofPurchase = Convert.ToDateTime(txtDateOfPurchase.Text);
-        AnOrder.Dispatched = chkDispatched.Checked;
+        string Address = txtAddress.Text;
+
+        string DateofPurchase = txtDateOfPurchase.Text;
+        string Error = "";
+        Error = AnOrder.Valid(Address, DateofPurchase);
+        if (Error == "")
+        {
+            AnOrder.Address = Address;
+            AnOrder.DateofPurchase = Convert.ToDateTime(DateofPurchase);
         
         //navigate to the viewer page
         Session["AnOrder"] = AnOrder;
-        Response.Redirect("OrderViewer.aspx");
-    
-
+        Response.Write("OrderViewer.aspx");
+    } 
+    else
+    {
+    //display the error message
+    lblError.Text = Error; 
+        }
     }
+
 
     protected void Button1_Click1(object sender, EventArgs e)
     {
@@ -58,6 +66,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtOrderPrice.Text = AnOrder.OrderPrice.ToString();
             txtOrderQnty.Text = AnOrder.OrderQnty.ToString();
 
-        }
     }
 }
+}
+
