@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Testing4
 {
@@ -12,15 +13,100 @@ namespace Testing4
 
         string DateofPurchase = DateTime.Now.Date.ToString();
         string Address = "109 Hollywood Avenue, Birmingham, B35 4HE";
+    
+
+    [TestClass]
+    public class tstOrderCollection
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+
+        }
+    }
 
 
 
         [TestMethod]
         public void InstanceOK()
         {
-            clsOrder AnOrder = new clsOrder();
+            clsOrderCollection AllOrder = new clsOrderCollection();
             // test to see if that exits 
-            Assert.IsNotNull(AnOrder);
+            Assert.IsNotNull(AllOrder);
+
+        }
+
+        [TestMethod]
+        public void OrderListOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create some test data to assign to the property
+            //in this case the data needs to be a list of objects
+            List<clsOrder> TestList = new List<clsOrder>();
+            //add an item to the list
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //set its properties
+            TestItem.OrderNo = 3;
+            TestItem.OrderPrice = 45.0;
+            TestItem.Address = "some street, some town, 123a, LE1 4FT";
+            TestItem.Dispatched = true;
+            TestItem.OrderQnty = 2;
+            TestItem.DateofPurchase = DateTime.Now.Date;
+            //Add the item to the test list
+            TestList.Add(TestItem);
+            //assign the data to the property
+            AllOrder.OrderList = TestList;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrder.OrderList, TestList);
+
+        }
+
+        [TestMethod]
+        public void ThisOrderPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create some test data to assign to the property
+            clsOrder TestOrder = new clsOrder();
+            //set the properties of the test object
+            TestOrder.OrderNo = 3;
+            TestOrder.OrderPrice = 45.0;
+            TestOrder.Address = "some street, some town, 123a, LE1 4FT";
+            TestOrder.Dispatched = true;
+            TestOrder.OrderQnty = 2;
+            TestOrder.DateofPurchase = DateTime.Now.Date;       
+            //assign the data to the property
+            AllOrder.ThisOrder = TestOrder;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrder.ThisOrder, TestOrder);
+
+        }
+        [TestMethod]
+        public void ListAndCountOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create some test data to assign to the property
+            // in this case the data needs to be a list of objects
+            List<clsOrder> TestList = new List<clsOrder>();
+            //add an item to the list
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //set the properties of the test object
+            TestItem.OrderNo = 3;
+            TestItem.OrderPrice = 45.0;
+            TestItem.Address = "some street, some town, 123a, LE1 4FT";
+            TestItem.Dispatched = true;
+            TestItem.OrderQnty = 2;
+            TestItem.DateofPurchase = DateTime.Now.Date;
+            //add the item to the test list
+            TestList.Add(TestItem);
+            //assign the data to the property
+            AllOrder.OrderList = TestList;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrder.Count, TestList.Count);
 
         }
 
@@ -485,6 +571,8 @@ namespace Testing4
             Assert.AreNotEqual(Error, "");
            
         }
+        
+
     }
 }
 
