@@ -61,12 +61,20 @@ namespace Testing2
             }
 
             [TestMethod]
-            public void CountPropertyOK()
+            public void ListAndCountOK()
             {
                 clsStockCollection AllStock = new clsStockCollection();
-                Int32 StockCount = 0;
-                AllStock.Count = StockCount;
-                Assert.AreEqual(AllStock.Count, StockCount);
+                List<clsStock> TestList = new List<clsStock>();
+                clsStock TestItem = new clsStock();
+                TestItem.ItemID = 5;
+                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemOver18 = false;
+                TestItem.ItemPrice = 35.00;
+                TestItem.ItemQuantity = 12;
+                TestItem.ItemDateAdded = DateTime.Now.Date;
+                TestList.Add(TestItem);
+                AllStock.StockList = TestList;
+                Assert.AreEqual(AllStock.Count, TestList.Count);
             }
         }
 
