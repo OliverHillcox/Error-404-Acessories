@@ -22,6 +22,25 @@ namespace Testing2
         public class tstStockCollection
         {
             [TestMethod]
+            public void AddMethodOK()
+            {
+                clsStockCollection AllStock = new clsStockCollection();
+                clsStock TestItem = new clsStock();
+                Int32 primarykey = 0;
+                TestItem.ItemID = 5;
+                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemOver18 = false;
+                TestItem.ItemPrice = 35.00;
+                TestItem.ItemQuantity = 12;
+                TestItem.ItemDateAdded = DateTime.Now.Date;
+                AllStock.ThisStock = TestItem;
+                primarykey = AllStock.Add();
+                TestItem.ItemID = primarykey;
+                AllStock.ThisStock.Find(primarykey);
+                Assert.AreEqual(AllStock.ThisStock, TestItem);
+            }
+
+            [TestMethod]
             public void InstanceOK()
             {
                 clsStockCollection AllStock = new clsStockCollection();

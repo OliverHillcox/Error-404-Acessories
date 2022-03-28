@@ -7,9 +7,10 @@ namespace ClassLibrary
     {
 
         List<clsStock> mStockList = new List<clsStock>();
+        clsStock mThisStock = new clsStock();
         public List<clsStock> StockList { get { return mStockList; } set { mStockList = value; } }
         public int Count { get { return mStockList.Count; } set { } }
-        public clsStock ThisStock { get; set; }
+        public clsStock ThisStock { get { return mThisStock; } set {mThisStock = value; } }
 
         public clsStockCollection()
         {
@@ -39,6 +40,18 @@ namespace ClassLibrary
                 Index++;
 
             }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemPrice", mThisStock.ItemPrice);
+            DB.AddParameter("@ItemQuantity", mThisStock.ItemQuantity);
+            DB.AddParameter("@ItemOver18", mThisStock.ItemOver18);
+            DB.AddParameter("@ItemDateAdded", mThisStock.ItemDateAdded);
+            DB.AddParameter("@ItemName", mThisStock.ItemName);
+
+            return DB.Execute("sproc_tblStock_Insert");
         }
     }
 }

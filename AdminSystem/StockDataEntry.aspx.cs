@@ -31,8 +31,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             someStock.ItemQuantity = Int32.Parse(txtItemQuantity.Text);
             someStock.ItemDateAdded = Convert.ToDateTime(txtItemDateAdded.Text);
             someStock.ItemPrice = Convert.ToDouble(txtItemPrice.Text);
-            Session["someStock"] = someStock;
-            Response.Redirect("StockViewer.aspx");
+
+            clsStockCollection StockList = new clsStockCollection();
+            StockList.ThisStock = someStock;
+            StockList.Add();
+            Response.Redirect("StockList.aspx");
         }
         else
         {
