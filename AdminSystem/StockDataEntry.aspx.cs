@@ -8,8 +8,29 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 itemID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (IsPostBack == false)
+        {
+            itemID = Convert.ToInt32(Session["ItemID"]);
+            if (itemID != -1)
+            {
+                DisplayStocks();
+            }
+        }
+    }
+
+    void DisplayStocks()
+    {
+        clsStockCollection stocks = new clsStockCollection();
+        stocks.ThisStock.Find(itemID);
+        txtItemID.Text = stocks.ThisStock.ItemID.ToString();
+        txtItemDateAdded.Text = stocks.ThisStock.ItemDateAdded.ToString();
+        txtItemName.Text = stocks.ThisStock.ItemName;
+        txtItemOver18.Checked = stocks.ThisStock.ItemOver18;
+        txtItemPrice.Text = stocks.ThisStock.ItemPrice.ToString();
+        txtItemQuantity.Text = stocks.ThisStock.ItemQuantity.ToString();
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -25,7 +46,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
         if (Error == "")
         {
-            someStock.ItemID = Int32.Parse(txtItemID.Text);
+            someStock.ItemID = Convert.ToInt32(txtItemID.Text);
             someStock.ItemName = txtItemName.Text;
             someStock.ItemOver18 = txtItemOver18.Checked;
             someStock.ItemQuantity = Int32.Parse(txtItemQuantity.Text);
@@ -33,8 +54,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             someStock.ItemPrice = Convert.ToDouble(txtItemPrice.Text);
 
             clsStockCollection StockList = new clsStockCollection();
-            StockList.ThisStock = someStock;
-            StockList.Add();
+            if (Convert.ToInt32(txtItemID.Text) == -1)
+            {
+                StockList.ThisStock = someStock;
+                StockList.Add();
+            }
+            else
+            {
+                StockList.ThisStock.Find(Convert.ToInt32(txtItemID.Text));
+                StockList.ThisStock = someStock;
+                StockList.Update();
+            }
             Response.Redirect("StockList.aspx");
         }
         else
@@ -45,7 +75,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("StockDataEntry.aspx");
+        Response.Redirect("StockList.aspx");
     }
 
     protected void Find_Click(object sender, EventArgs e)
