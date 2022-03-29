@@ -139,12 +139,34 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string Address, string DateofPurchase)
+        public string Valid(string Address, string DateofPurchase, int OrderQnty, Double OrderPrice)
         {
             //create a string variable to store the error
             String Error = "";
             //create a temporary varaible to store date values
             DateTime DateTemp;
+
+            if (OrderQnty < 0)
+            {
+                Error = Error + "The Item Quantity may be negative or blank : ";
+            }
+
+            if (OrderQnty > 100)
+            {
+                Error = Error + "The Item Quantity may have quantity over 100 : ";
+            }
+            if (OrderPrice < 0)
+            {
+                Error = Error + "The Order Price may be negative : ";
+            }
+
+            if (OrderPrice > 10000)
+            {
+                Error = Error + "The Order Price may not be above 10000.00 : ";
+            }
+
+
+
             // if the Address is blank
             if (Address.Length == 0)
             {
@@ -155,8 +177,8 @@ namespace ClassLibrary
             //if the address is greater than 50 characters
             if (Address.Length > 50)
             {
-                //record the error
-                Error = Error + "The address must be less than 50 characters :";
+                //record the error 
+                Error = Error + "The address must be less than 50 characters : ";
 
             }
             try
@@ -168,7 +190,7 @@ namespace ClassLibrary
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the past :";
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 //check the see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
@@ -182,10 +204,10 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The date was not a valid date : ";
             }
-                //return any error messages
-                return Error;
-            }
+            //return any error messages
+            return Error;
         }
+    }
     }
 
 

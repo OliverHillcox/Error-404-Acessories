@@ -13,7 +13,8 @@ namespace Testing4
 
         string DateofPurchase = DateTime.Now.Date.ToString();
         string Address = "109 Hollywood Avenue, Birmingham, B35 4HE";
-    
+        int OrderQnty = 2;
+        Double OrderPrice = 150.00;
 
     [TestClass]
     public class tstOrderCollection
@@ -340,7 +341,7 @@ namespace Testing4
             //string varaible to store any error message
             String Error = "";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -355,7 +356,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -369,7 +370,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "b";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -383,7 +384,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "bb";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -397,7 +398,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -411,7 +412,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -425,7 +426,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "aaaaaaaaaaaaaaaaaaaaaaaaa";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -439,7 +440,7 @@ namespace Testing4
             //create some test data to pass to the method
             String Address = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // this should fail
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -454,7 +455,7 @@ namespace Testing4
             string Address = "";
             Address = Address.PadRight(500, 'a'); // this should fail
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -474,7 +475,7 @@ namespace Testing4
             //convert the date variable to a string variable
             string DateofPurchase = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -494,7 +495,7 @@ namespace Testing4
             //convert the date variable to a string variable
             string DateofPurchase = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -512,7 +513,7 @@ namespace Testing4
             //convert the date variable to a string variable
             string DateofPurchase = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -532,7 +533,7 @@ namespace Testing4
             //convert the date variable to a string variable
             string DateofPurchase = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -552,7 +553,7 @@ namespace Testing4
             //convert the date variable to a string vairable
             string DateofPurchase = TestDate.ToString();        
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -566,14 +567,185 @@ namespace Testing4
             //set the DateofPurchase to a non date value
             string DateofPurchase = "this is not a date!";
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase);
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
            
         }
-        
 
-    }
+        [TestMethod]
+        public void OrderQntyExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = -2147483648;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderQntyMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = -1;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderQntyMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 0;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderQntyMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 1;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderQntyMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 99;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderQntyMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 100;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderQntyMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 101;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 50;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            int OrderQnty = 2147483647;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderPriceExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = Double.MinValue;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = -1.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = 0.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = 1.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = 9999.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = 10000.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = 10001.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = 5000.00;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderPriceExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Double OrderPrice = Double.MaxValue;
+            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+            Assert.AreNotEqual(Error, "");
+
+       }
+   }
 }
 
 

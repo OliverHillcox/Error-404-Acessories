@@ -24,14 +24,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsOrder AnOrder = new clsOrder();
         //capture the address
         string Address = txtAddress.Text;
-
+        int OrderQnty = Convert.ToInt32(txtOrderQnty.Text);
         string DateofPurchase = txtDateOfPurchase.Text;
+        Double OrderPrice = Convert.ToDouble(txtOrderPrice.Text);
         string Error = "";
-        Error = AnOrder.Valid(Address, DateofPurchase);
+        Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
         if (Error == "")
         {
             AnOrder.Address = Address;
             AnOrder.DateofPurchase = Convert.ToDateTime(DateofPurchase);
+            AnOrder.OrderQnty = OrderQnty;
         
         //navigate to the viewer page
         Session["AnOrder"] = AnOrder;
