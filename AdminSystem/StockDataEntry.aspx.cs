@@ -14,6 +14,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (IsPostBack == false)
         {
             itemID = Convert.ToInt32(Session["ItemID"]);
+            
             if (itemID != -1)
             {
                 DisplayStocks();
@@ -54,7 +55,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             someStock.ItemPrice = Convert.ToDouble(txtItemPrice.Text);
 
             clsStockCollection StockList = new clsStockCollection();
-            if (Convert.ToInt32(txtItemID.Text) == -1)
+            if (itemID == -1)
             {
                 StockList.ThisStock = someStock;
                 StockList.Add();

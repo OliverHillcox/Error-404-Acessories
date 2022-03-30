@@ -42,6 +42,13 @@ namespace ClassLibrary
             }
         }
 
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemID", mThisStock.ItemID);
+            DB.Execute("sproc_tblStock_Delete");
+        }
+
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -62,7 +69,6 @@ namespace ClassLibrary
             DB.AddParameter("@ItemOver18", mThisStock.ItemOver18);
             DB.AddParameter("@ItemDateAdded", mThisStock.ItemDateAdded);
             DB.AddParameter("@ItemName", mThisStock.ItemName);
-
             return DB.Execute("sproc_tblStock_Insert");
         }
     }

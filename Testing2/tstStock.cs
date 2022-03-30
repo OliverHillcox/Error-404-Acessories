@@ -21,6 +21,25 @@ namespace Testing2
         [TestClass]
         public class tstStockCollection
         {
+            [TestMethod]
+            public void DeleteMethodOK()
+            {
+                clsStockCollection ALLstock = new clsStockCollection();
+                clsStock TestItem = new clsStock();
+                Int32 primarykey = 0;
+                TestItem.ItemName = "DeleteMethodCheck";
+                TestItem.ItemOver18 = false;
+                TestItem.ItemPrice = 35.00;
+                TestItem.ItemQuantity = 12;
+                TestItem.ItemDateAdded = DateTime.Now.Date;
+                ALLstock.ThisStock = TestItem;
+                primarykey = ALLstock.Add();
+                TestItem.ItemID = primarykey;
+                ALLstock.ThisStock.Find(primarykey);
+                ALLstock.Delete();
+                bool Found = ALLstock.ThisStock.Find(primarykey);
+                Assert.IsFalse(Found);
+            }
 
             [TestMethod]
             public void UpdateMethodOK()
@@ -28,7 +47,7 @@ namespace Testing2
                 clsStockCollection AllStock = new clsStockCollection();
                 clsStock TestItem = new clsStock();
                 Int32 primarykey = 0;
-                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemName = "UpdateMethodCheck";
                 TestItem.ItemOver18 = false;
                 TestItem.ItemPrice = 35.00;
                 TestItem.ItemQuantity = 12;
@@ -36,7 +55,7 @@ namespace Testing2
                 AllStock.ThisStock = TestItem;
                 primarykey = AllStock.Add();
                 TestItem.ItemID = primarykey;
-                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemName = "UpdateMethodCheck2";
                 TestItem.ItemOver18 = false;
                 TestItem.ItemPrice = 39.99;
                 TestItem.ItemQuantity = 20;
@@ -54,7 +73,7 @@ namespace Testing2
                 clsStock TestItem = new clsStock();
                 Int32 primarykey = 0;
                 TestItem.ItemID = 5;
-                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemName = "AddMethodCheck";
                 TestItem.ItemOver18 = false;
                 TestItem.ItemPrice = 35.00;
                 TestItem.ItemQuantity = 12;
@@ -80,7 +99,7 @@ namespace Testing2
                 List<clsStock> TestList = new List<clsStock>();
                 clsStock TestItem = new clsStock();
                 TestItem.ItemID = 5;
-                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemName = "StockListOKCheck";
                 TestItem.ItemOver18 = false;
                 TestItem.ItemPrice = 35.00;
                 TestItem.ItemQuantity = 12;
@@ -96,7 +115,7 @@ namespace Testing2
                 clsStockCollection AllStock = new clsStockCollection();
                 clsStock TestItem = new clsStock();
                 TestItem.ItemID = 5;
-                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemName = "ThisStockCheck";
                 TestItem.ItemOver18 = false;
                 TestItem.ItemPrice = 35.00;
                 TestItem.ItemQuantity = 12;
@@ -112,7 +131,7 @@ namespace Testing2
                 List<clsStock> TestList = new List<clsStock>();
                 clsStock TestItem = new clsStock();
                 TestItem.ItemID = 5;
-                TestItem.ItemName = "LogitechM355";
+                TestItem.ItemName = "ListAndCountCheck";
                 TestItem.ItemOver18 = false;
                 TestItem.ItemPrice = 35.00;
                 TestItem.ItemQuantity = 12;
