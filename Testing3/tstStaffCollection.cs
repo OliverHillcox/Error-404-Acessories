@@ -96,6 +96,37 @@ namespace Test_Framework
 
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //var to store primary key
+            Int32 PrimaryKey = 0;
+
+            //set its property
+            TestItem.Intern = true;
+            TestItem.StaffId = 1;
+            TestItem.Salary = 20000.00;
+            TestItem.Name = "John";
+            TestItem.Address = "123 something close";
+            TestItem.Phone = "123 456 7890";
+            TestItem.StartedDate = DateTime.Now.Date;
+
+            //set thisstaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.add();
+            //set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+
+        }
+
 
 
     }

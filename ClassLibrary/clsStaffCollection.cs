@@ -8,6 +8,8 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsStaff> mStaffList = new List<clsStaff>();
+        //private data member thisStaff
+        clsStaff mThisStaff = new clsStaff();
 
 
 
@@ -37,7 +39,17 @@ namespace ClassLibrary
                 
             }
         }
-        public clsStaff ThisStaff { get; set; }
+        public clsStaff ThisStaff 
+        {
+            get
+            {
+                return mThisStaff;
+            }
+            set
+            {
+                mThisStaff = value;
+            }
+        }
 
 
         public clsStaffCollection()
@@ -74,5 +86,21 @@ namespace ClassLibrary
 
         }
 
+        public int add()
+        {
+            //adds a new record to the database based on the values of thisStaff
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("Intern", mThisStaff.Intern);
+            DB.AddParameter("Salary", mThisStaff.Salary);
+            DB.AddParameter("Name", mThisStaff.Name);
+            DB.AddParameter("Address", mThisStaff.Address);
+            DB.AddParameter("Phone", mThisStaff.Phone);
+            DB.AddParameter("StartedDate", mThisStaff.StartedDate);
+
+            //execute the quary returning the primary key value
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
     }
 }
