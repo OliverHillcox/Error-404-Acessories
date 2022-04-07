@@ -8,9 +8,18 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if(IsPostBack == false)
+        {
+            if(CustomerID != -1 )
+            {
+                DisplayAddress();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -34,24 +43,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if(Error == "")
         {
+
+            ACustomer.CustomerID = CustomerID;
+
             ACustomer.Active = chkOver18.Checked;
             ACustomer.Name = Name;
             ACustomer.Birthday = Convert.ToDateTime(Birthday);
             ACustomer.PostCode = PostCode;
             ACustomer.PhoneNumber = PhoneNumber;
             ACustomer.EmailAddress = EmailAddress;
+            ACustomer.Address = Address;
 
-            Session["ACustomer"] = ACustomer;
-            Response.Redirect("CustomerViewer.aspx");
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+            if(CustomerID == -1)
+            {
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Add();
+            }
+
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerID);
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Update();
+            }
+            Response.Redirect("CustomerList.aspx");
         }
 
         else
         {
             lblError.Text = Error;
         }
-
-
-
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -81,8 +104,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtPostCode.Text = ACustomer.PostCode;
 
         }
+    }
 
+    public void DisplayAddress()
+    {
+        clsCustomerCollection customerCollection = new clsCustomerCollection();
+        customerCollection.ThisCustomer.Find(CustomerID);
 
+        txtAddress.Text = customerCollection.ThisCustomer.Address;
+        txtBirthday.Text = customerCollection.ThisCustomer.Birthday.ToString();
+        txtCustomerName.Text = customerCollection.ThisCustomer.Name;
+        txtEmailAddress.Text = customerCollection.ThisCustomer.EmailAddress;
+        txtPhoneNumber.Text = customerCollection.ThisCustomer.PhoneNumber;
+        txtPostCode.Text = customerCollection.ThisCustomer.PostCode;
 
     }
 }
