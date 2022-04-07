@@ -8,9 +8,36 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderNo;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        //gett the number of the address to be processed
+        OrderNo = Convert.ToInt32(Session["OrderNo"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (OrderNo != -1)
+            {
+                //display the current data for the record
+                DisplayOrder();
+            }
+        }
+    }
 
+    private void DisplayOrder()
+    {
+        //create an instance of the order book
+        clsOrderCollection OrderBook = new clsOrderCollection();
+        //find the record to update
+        OrderBook.ThisOrder.Find(OrderNo);
+        //display the data for this record
+        txtOrderNo.Text = OrderBook.ThisOrder.OrderNo.ToString();
+        txtAddress.Text = OrderBook.ThisOrder.Address;
+        txtOrderQnty.Text = OrderBook.ThisOrder.OrderQnty.ToString();
+        txtOrderPrice.Text = OrderBook.ThisOrder.OrderPrice.ToString();
+        txtDateOfPurchase.Text = OrderBook.ThisOrder.DateofPurchase.ToString();
+        chkDispatched.Checked = OrderBook.ThisOrder.Dispatched;
     }
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -31,13 +58,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
         if (Error == "")
         {
+            AnOrder.OrderNo = OrderNo; // dont miss the bit!!
             AnOrder.Address = Address;
             AnOrder.DateofPurchase = Convert.ToDateTime(DateofPurchase);
             AnOrder.OrderQnty = OrderQnty;
+            AnOrder.Dispatched = chkDispatched.Checked;
+
+            clsOrderCollection OrderList = new clsOrderCollection();
+
+            // if this is a new record i.e OrderNo = -1 then add the data
+            if (OrderNo == -1)
+            {
+                //set the ThisOrderProperty
+                OrderList.ThisOrder = AnOrder;
+                //add the new record
+                OrderList.Add();
+            }
+
+        else
+            {
+                //find the record to update
+                OrderList.ThisOrder.Find(OrderNo);
+                //set the ThisOrder property
+                OrderList.ThisOrder = AnOrder;
+                //update the record
+                OrderList.Update();
+            }
         
         //navigate to the viewer page
-        Session["AnOrder"] = AnOrder;
-        Response.Write("OrderViewer.aspx");
+        
+        Response.Redirect("OrderList.aspx");
     } 
     else
     {
