@@ -22,6 +22,39 @@ namespace Testing2
         public class tstStockCollection
         {
             [TestMethod]
+            public void ReportItemNameTestDataFound()
+            {
+                clsStockCollection FilteredNames = new clsStockCollection();
+                Boolean OK = true;
+                FilteredNames.ReportByItemName("CorsairK55");
+                if (FilteredNames.Count == 2)
+                {
+                    if (FilteredNames.StockList[0].ItemID != 2)
+                    {
+                        OK = false;
+                    }
+                    if (FilteredNames.StockList[1].ItemID != 1)
+                    {
+                        OK = false;
+                    }
+                }
+                else
+                {
+                    OK = false;
+                }
+                Assert.IsTrue(OK);
+            }
+
+            [TestMethod]
+            public void ReportByItemNameMethodOK()
+            {
+                clsStockCollection allstock = new clsStockCollection();
+                clsStockCollection FilteredNames = new clsStockCollection();
+                FilteredNames.ReportByItemName("CorsairK55");
+                Assert.AreEqual(allstock.Count, FilteredNames.Count);
+            }
+
+            [TestMethod]
             public void DeleteMethodOK()
             {
                 clsStockCollection ALLstock = new clsStockCollection();

@@ -14,6 +14,13 @@ namespace ClassLibrary
 
         public clsStockCollection()
         {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblStock_SelectAll");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
             Int32 Index = 0;
 
             Int32 RecordCount = 0;
@@ -40,6 +47,14 @@ namespace ClassLibrary
                 Index++;
 
             }
+        }
+
+        public void ReportByItemName(string ItemName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemName", ItemName);
+            DB.Execute("sproc_tblAddress_FilterByItemName");
+            PopulateArray(DB);
         }
 
         public void Delete()
