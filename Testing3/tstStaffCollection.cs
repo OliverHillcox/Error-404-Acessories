@@ -117,7 +117,7 @@ namespace Test_Framework
             //set thisstaff to the test data
             AllStaff.ThisStaff = TestItem;
             //add the record
-            PrimaryKey = AllStaff.add();
+            PrimaryKey = AllStaff.Add();
             //set the primary key of the test data
             TestItem.StaffId = PrimaryKey;
             //find the record
@@ -125,6 +125,143 @@ namespace Test_Framework
             //test to see that the two values are the same
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
 
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set the properties
+            TestItem.Intern = true;
+            TestItem.Salary = 18000.00;
+            TestItem.Name = "Christy";
+            TestItem.Address = "Example address";
+            TestItem.Phone = "123 123 1234";
+            TestItem.StartedDate = DateTime.Now.Date;
+
+            //set this address to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+
+            //modify the test data
+            TestItem.Intern = false;
+            TestItem.Salary = 19000.00;
+            TestItem.Name = "Some name";
+            TestItem.Address = "another address";
+            TestItem.Phone = "111 222 3333";
+            TestItem.StartedDate = DateTime.Now.Date;
+
+            //set the record based on the new test data
+            AllStaff.ThisStaff = TestItem;
+            //update the record
+            AllStaff.Update();
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test to see thisStaff matches the test data
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+
+            //set its properties
+            TestItem.Intern = true;
+            TestItem.StaffId = 1;
+            TestItem.Salary = 18000.00;
+            TestItem.Name = "Christy22";
+            TestItem.Address = "Example address22";
+            TestItem.Phone = "123 123 1234 22";
+            TestItem.StartedDate = DateTime.Now.Date;
+
+            //set thisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //delete the record
+            AllStaff.Delete();
+            //now find the record
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+
+            //test to see that the record was not found
+            Assert.IsFalse(Found);
+
+        }
+
+        [TestMethod]
+        public void ReportByNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            //apply a blank string (should return all records);
+            FilteredStaff.ReportByName("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportByNameNoneFound()
+        {
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a name that doesn't exist
+            FilteredStaff.ReportByName("xxxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //var to store outcome
+            Boolean OK = true;
+            //apply a name that doesn't exist
+            FilteredStaff.ReportByName("yyyy");
+
+            //check that the correct number of records are found
+            if (FilteredStaff.Count == 2)
+            {
+                //check that the first record is ID 36
+                if (FilteredStaff.StaffList[0].StaffId != 50)
+                {
+                    OK = false;
+                }
+                //check that the first record is ID 37
+                if(FilteredStaff.StaffList[1].StaffId != 51)
+                {
+                    OK = false;
+                }
+
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
         }
 
 
