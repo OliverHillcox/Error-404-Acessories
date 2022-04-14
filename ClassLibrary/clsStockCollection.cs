@@ -25,8 +25,6 @@ namespace ClassLibrary
 
             Int32 RecordCount = 0;
 
-            clsDataConnection DB = new clsDataConnection();
-
             DB.Execute("sproc_tblStock_SelectAll");
 
             RecordCount = DB.Count;
