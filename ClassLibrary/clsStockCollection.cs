@@ -23,11 +23,11 @@ namespace ClassLibrary
         {
             Int32 Index = 0;
 
-            Int32 RecordCount = 0;
-
-            DB.Execute("sproc_tblStock_SelectAll");
+            Int32 RecordCount;
 
             RecordCount = DB.Count;
+
+            mStockList = new List<clsStock>();
 
             while (Index < RecordCount)
             {
@@ -51,7 +51,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ItemName", ItemName);
-            DB.Execute("sproc_tblAddress_FilterByItemName");
+            DB.Execute("sproc_tblStock_FilterByItemName");
             PopulateArray(DB);
         }
 
