@@ -50,7 +50,7 @@
             <br />
             <br />
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="margin-right: 0px" Text="OK" Width="76px" />
-&nbsp;<asp:Button ID="btnCancle" runat="server" Text="Cancle" OnClick="btnCancle_Click" />
+&nbsp;<asp:Button ID="btnCancle" runat="server" Text="Cancel" OnClick="btnCancle_Click" />
         </div>
 &nbsp;</form>
 </body>

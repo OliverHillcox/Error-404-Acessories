@@ -207,7 +207,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(OrderNo);
             //check the property
-            if (AnOrder.DateofPurchase != Convert.ToDateTime("01/01/2021"))
+            if (AnOrder.DateofPurchase != Convert.ToDateTime("05/05/2022"))
             {
                 OK = false;
             }
@@ -370,17 +370,17 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //string variable to store any error message
-            String Error = "";
+           String Error = "";
             //create some test data to pass to the method
             DateTime TestDate;
             //set the date to todays date
             TestDate = DateTime.Now.Date;
-            // change the date to whatever the date is less 100 years
+             //change the date to whatever the date is less 100 years
             TestDate = TestDate.AddYears(-100);
             //convert the date variable to a string variable
             string DateofPurchase = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
+           Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -398,7 +398,7 @@ namespace Testing4
             // change the date to whatever the date is less 100 years
             TestDate = TestDate.AddYears(-1);
             //convert the date variable to a string variable
-            string DateofPurchase = TestDate.ToString();
+            String DateofPurchase = TestDate.ToString();
             //invoke the method
             Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
             //test to see that the result is correct
