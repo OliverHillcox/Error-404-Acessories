@@ -55,6 +55,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string Address = txtAddress.Text;
         string StartedDate = txtStartedDate.Text;
         string Salary = txtSalary.Text;
+        string Intern = chkIntern.Checked.ToString();
 
         //variable to store any error message
         string Error = "";
@@ -63,12 +64,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             AnStaff.StaffId = StaffId;
-            AnStaff.Name = Name;
-            AnStaff.Phone = Phone;
-            AnStaff.Address = Address;
+            AnStaff.Name = txtName.Text;
+            AnStaff.Phone = txtPhone.Text;
+            AnStaff.Address = txtAddress.Text;
             AnStaff.Intern = chkIntern.Checked;
-            AnStaff.Salary = Convert.ToDouble(Salary);
-            AnStaff.StartedDate = Convert.ToDateTime(StartedDate);
+            AnStaff.Salary = Convert.ToDouble(txtSalary.Text);
+            AnStaff.StartedDate = Convert.ToDateTime(txtStartedDate.Text);
 
             //create a new instance of the staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
@@ -160,7 +161,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancle_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("StaffList.aspx");
     }
 
     protected void chkIntern_CheckedChanged(object sender, EventArgs e)

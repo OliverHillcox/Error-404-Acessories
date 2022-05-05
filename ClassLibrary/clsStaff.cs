@@ -188,7 +188,7 @@ namespace ClassLibrary
             catch
             {
                 //record the error
-                Error = Error + "The date was not a valid date : ";
+                Error = Error + "StartedDate must be valid. ";
             }
 
             if (address.Length == 0)
