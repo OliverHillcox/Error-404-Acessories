@@ -28,6 +28,16 @@ namespace Testing2
         }
 
         [TestMethod]
+        public void ItemNameExtremeMin()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemname = "";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
         public void ItemNameMinLessOne()
         {
             clsStock someStock = new clsStock();
@@ -108,11 +118,31 @@ namespace Testing2
         }
 
         [TestMethod]
+        public void ItemPriceExtremeMin()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "-10.99";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
         public void ItemPriceMinLessOne()
         {
             clsStock someStock = new clsStock();
             String Error = "";
-            string itemprice = "";
+            string itemprice = "-0.99";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemPriceZero()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "0";
             Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
@@ -183,6 +213,136 @@ namespace Testing2
             clsStock someStock = new clsStock();
             String Error = "";
             string itemprice = "999999999999.99";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantExtremeMin()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "-2309";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "-1";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "0";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "1";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMaxMinusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "499999";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMaxBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "500000";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMaxPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "500001";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantMid()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "250000";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantInvalid()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemprice = "";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemQuantExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemquantity = "999999999999999999999";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemOver18True()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemover18 = "True";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemOver18False()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemover18 = "False";
+            Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemOver18Invalid()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            string itemover18 = "";
             Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
             Assert.AreNotEqual(Error, "");
         }
