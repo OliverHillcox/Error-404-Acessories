@@ -11,10 +11,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
     Int32 itemID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        itemID = Convert.ToInt32(Session["ItemID"]);
         if (IsPostBack == false)
-        {
-            itemID = Convert.ToInt32(Session["ItemID"]);
-            
+        {            
             if (itemID != -1)
             {
                 DisplayStocks();
@@ -37,17 +36,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStock someStock = new clsStock();
-        string itemid = txtItemID.Text;
         string itemname = txtItemName.Text;
         string itemover18 = txtItemOver18.Checked.ToString();
         string itemquantity = txtItemQuantity.Text;
         string itemdateadded = txtItemDateAdded.Text;
         string itemprice = txtItemPrice.Text;
         string Error = "";
-        Error = someStock.Valid(itemid, itemname, itemprice, itemquantity, itemover18, itemdateadded);
+        Error = someStock.Valid(itemID.ToString(), itemname, itemprice, itemquantity, itemover18, itemdateadded);
         if (Error == "")
         {
-            someStock.ItemID = Convert.ToInt32(txtItemID.Text);
+            someStock.ItemID = itemID;
             someStock.ItemName = txtItemName.Text;
             someStock.ItemOver18 = txtItemOver18.Checked;
             someStock.ItemQuantity = Int32.Parse(txtItemQuantity.Text);
@@ -62,7 +60,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
             else
             {
-                StockList.ThisStock.Find(Convert.ToInt32(txtItemID.Text));
+                StockList.ThisStock.Find(itemID);
                 StockList.ThisStock = someStock;
                 StockList.Update();
             }

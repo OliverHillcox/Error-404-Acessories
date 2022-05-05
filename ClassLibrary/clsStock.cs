@@ -58,6 +58,10 @@ namespace ClassLibrary
                 {
                     Error = Error + "ItemPrice cannot exceed £100000. ";
                 }
+                if (Pricetemp <= 0)
+                {
+                    Error = Error + "ItemPrice cannot be negative or 0.";
+                }
             }
             catch
             {
@@ -84,6 +88,14 @@ namespace ClassLibrary
             try
             {
                 Quanttemp = Convert.ToInt32(itemquantity);
+                if (Quanttemp > 500000)
+                {
+                    Error = Error + "ItemQuantity must be under or equal to 500,000";
+                }
+                if (Quanttemp < 0)
+                {
+                    Error = Error + "ItemQuantity must be over or equal to 0";
+                }
             }
             catch
             {
