@@ -76,9 +76,9 @@ public partial class _1_List : System.Web.UI.Page
             //get the primary key value of the record to edit
             OrderNo = Convert.ToInt32(lstOrderList.SelectedValue);
             //store the data in the session object
-            Session["Order"] = OrderNo;
+            Session["OrderNo"] = OrderNo;
             //redirect to the delete page
-            Response.Redirect("OrderConfirmDelete.aspxx");
+            Response.Redirect("OrderConfirmDelete.aspx");
         }
         else
         {

@@ -15,7 +15,7 @@
         <p>
             &nbsp;</p>
         <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" Text="Yes" />
-&nbsp;<asp:Button ID="Button1" runat="server" Text="No" />
+&nbsp;<asp:Button ID="Button1" runat="server" Text="No" OnClick="Button1_Click" />
     </form>
 </body>
 </html>

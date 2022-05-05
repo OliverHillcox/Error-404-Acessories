@@ -54,6 +54,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         int OrderQnty = Convert.ToInt32(txtOrderQnty.Text);
         string DateofPurchase = txtDateOfPurchase.Text;
         Double OrderPrice = Convert.ToDouble(txtOrderPrice.Text);
+
         string Error = "";
         Error = AnOrder.Valid(Address, DateofPurchase, OrderQnty, OrderPrice);
         if (Error == "")
@@ -120,5 +121,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+    }
 }
 
